@@ -3,6 +3,8 @@ A template api of phala | PHA 的 API 参考模板
 
 This template is based on the [official console.js](https://github.com/Phala-Network/phala-blockchain/blob/master/scripts/js/src/console.js) | 本模板基于官方 `console.js` 改编
 
+It is recommended to read [polkadot{.js} doc](https://polkadot.js.org/docs/) before use | 使用前建议先阅读 [波卡 api 文档](https://polkadot.js.org/docs/)
+
 **请确定理解 phala api 的使用方法再进行操作，误操作造成的损失本人概不负责**
 
 ---
