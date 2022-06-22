@@ -89,3 +89,5 @@ Without `--send` option will not send on chain, will just retrun the hex of the 
 # Extrinsics list | 可用交易列表
 
 https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkhala-api.phala.network%2Fws#/extrinsics
+
+I might write a list of all available transactions and their usage later. | 之后可能会写所有可用交易及其用法的列表
