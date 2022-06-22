@@ -5,7 +5,9 @@ This template is based on the [official console.js](https://github.com/Phala-Net
 
 It is recommended to read [polkadot{.js} doc](https://polkadot.js.org/docs/) before use | 使用前建议先阅读 [波卡 api 文档](https://polkadot.js.org/docs/)
 
-**请确定理解 phala api 的使用方法再进行操作，误操作造成的损失本人概不负责**
+**Please make sure you understand how to use the phala api before operating. I am not responsible for any losses caused by misoperation!**
+
+**请确定理解 phala api 的使用方法再进行操作，误操作造成的损失本人概不负责！**
 
 ---
 
