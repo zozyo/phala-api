@@ -1,0 +1,9 @@
+const fs=require("fs"),program=require("commander")["program"],{ApiPromise,Keyring,WsProvider}=require("@polkadot/api"),{cryptoWaitReady,blake2AsHex}=require("@polkadot/util-crypto"),{numberToHex,hexToU8a,u8aConcat,u8aToHex}=require("@polkadot/util"),userInfoRaw=fs.readFileSync("userInfo.json"),userInfo=JSON.parse(userInfoRaw);function run(afn){return function(...args){afn(...args).then(process.exit).catch(console.error).finally(()=>process.exit(-1))}}async function useApi(){let{ws,substrateNoRetry,at}=program.opts();var wsProvider=new WsProvider(ws);const api=await ApiPromise.create({provider:wsProvider,throwOnConnect:!substrateNoRetry});return at?(at.startsWith("0x")||isNaN(at)||(at=(await api.rpc.chain.getBlockHash(at)).toString()),console.debug("Accessing the data at:",at),api.at(at)):api}async function useKey(){await cryptoWaitReady();const keyring=new Keyring({type:"sr25519"});var pair=keyring.createFromUri(userInfo.mnemonic);return keyring.setSS58Format(30),{pair:pair}}async function printTxOrSend(call){var pair;program.opts().send?(pair=(await useKey())["pair"],printObject(await call.signAndSend(pair,({status})=>{status.isInBlock&&console.log(colors.green("included in block"))}),4)):console.log(call.toHex())}function printObject(obj,depth=3,getter=!0){program.opts().json?console.log(JSON.stringify(obj,void 0,2)):console.dir(obj,{depth:depth,getter:getter})}program.option("--ws <url>","Substrate WS endpoint",process.env.ENDPOINT||userInfo.endpoint).option("--substrate-no-retry",!1).option("--send","send the transaction instead of print the hex").option("--json","output regular json",!1).action(run(async()=>{const api=await useApi();
+
+//Fill in exticnisics here
+var txs=[
+	api.tx.balances.transferKeepAlive("45BsgW5wSLE38P2AeogXRp67wge9pvP1sdm2ZgSWkLEPTBgX",1000000000000)
+];
+
+//DO NOT EDIT BELOW THIS LINE
+await printTxOrSend(api.tx.utility.batch(txs))})),program.parse(process.argv);
